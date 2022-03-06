@@ -36,14 +36,22 @@ def get_an_item(item_id:int):
 #Search By Color
 @app.get('/item/{item_color}',response_model=Item,status_code=status.HTTP_200_OK)
 def get_item_color(item_color:str):
-    item=db.query(models.Item).filter(models.Item.color==item_color).first()
+    item=db.query(models.Item).filter(models.Item.color==item_color).all()
     return item
+
+@app.get("Pick a color")
+def read_item(Color2: str, Available: Optional[str] = None):
+    return {"Color": Color2, "Available": Available}
+
 
 #Search By Model
 @app.get('/item/{item_model}',response_model=Item,status_code=status.HTTP_200_OK)
 def get_item_model(item_model:str):
-    item=db.query(models.Item).filter(models.Item.car_model==item_model).first()
+    item=db.query(models.Item).filter(models.Item.car_model==item_model).all()
     return item
+
+
+
 
 #Creat An Item
 @app.post('/items',response_model=Item,status_code=status.HTTP_201_CREATED)
