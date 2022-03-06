@@ -34,13 +34,13 @@ def get_an_item(item_id:int):
     return item
 
 #Search By Color
-@app.get('/item/{item_color}',response_model=Item,status_code=status.HTTP_200_OK)
+@app.get('/itemsearch/{item_color}',response_model=Item,status_code=status.HTTP_200_OK)
 def get_item_color(item_color:str):
     item=db.query(models.Item).filter(models.Item.color.casefold()==item_color.casefold()).all()
     return item
 
 #Search By Model
-@app.get('/item/{item_model}',response_model=Item,status_code=status.HTTP_200_OK)
+@app.get('/itemsearch/{item_model}',response_model=Item,status_code=status.HTTP_200_OK)
 def get_item_model(item_model:str):
     item=db.query(models.Item).filter(models.Item.car_model==item_model).all()
     return item
